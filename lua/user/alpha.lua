@@ -4,6 +4,7 @@ local M = {
   commit = "dafa11a6218c2296df044e00f88d9187222ba6b0",
 }
 
+-- TODO: Create my own header and footer
 function M.config()
   local alpha = require "alpha"
   local dashboard = require "alpha.themes.dashboard"

@@ -1,3 +1,4 @@
+-- TODO: check if this is called before or after leader is set.
 -- Shorten function name
 local keymap = vim.keymap.set
 -- Silent keymap option
@@ -44,6 +45,7 @@ keymap("v", "p", 'P', opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
+keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
