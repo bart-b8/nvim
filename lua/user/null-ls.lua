@@ -30,6 +30,7 @@ function M.config()
       formatting.stylua,
       formatting.google_java_format,
       diagnostics.flake8,
+      -- diagnostics.vale, -- only works if ther is a .vale.ini file available.
     },
   }
 end

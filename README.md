@@ -94,6 +94,23 @@ We will also need `ripgrep` for Telescope to work:
 
 **NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
 
+## LaTeX
+
+For using all functionality of [vimtex](https://github.com/lervag/vimtex): 
+```:filetype-plugin-indent-on``` and a remote server needs to be started.
+The first is normally taken care of by most modern plugin managers.
+The second is done by default by neovim. yeah!
+
+
+Requires latexmk, latexrun, tectonic, arara.
+These are part of LaTeX distros like miktex en texlive.
+
+see ```:help vimtex-requirments``` 
+
+Another thing needed. This time for a live preview. Is a pdf reader.
+This config works with zathura. [check ejmastnak's article](https://www.ejmastnak.com/tutorials/vim-latex/pdf-reader/#zathura)
+
+
 ## Fonts
 
 I recommend using the following repo to get a "Nerd Font" (Font that supports icons)
@@ -188,6 +205,7 @@ Heres the wiki for installing new plugins refer to this: [wiki](https://github.c
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [DAPInstall.nvim](https://github.com/ravenxrz/DAPInstall.nvim)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
+- [vimtex](https://github.com/lervag/vimtex)
 
 ---
 

@@ -46,6 +46,20 @@ function M.config()
   local cmp = require "cmp"
   local luasnip = require "luasnip"
   require("luasnip/loaders/from_vscode").lazy_load()
+  require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
+
+  -- set a keybind to reload the snippits after updating my own snippits when making updates in other vim instance
+  -- (New snippets should be available in instance where changes where made.)
+  vim.keymap.set('n', '<leader>L', function() require('luasnip.loaders.from_lua').load({paths =  "~/.config/nvim/LuaSnip/" }) end, {silent = true})
+
+  -- Store selection
+  -- When in visual mode: <Tab> to remove highlighted and stored in LS_SELECT_RAW
+  -- access later with: parent.snippet.env.LS_SELECT_RAW
+  require("luasnip").config.set_config({
+    store_selection_keys = "<Tab>",
+  })
+
+  vim.keymap.set('n', "<leader>s", function() require("luasnip.loaders").edit_snippet_files() end, {silent = true} )
 
   local check_backspace = function()
     local col = vim.fn.col "." - 1
