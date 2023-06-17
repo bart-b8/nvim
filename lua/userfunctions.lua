@@ -1,8 +1,9 @@
 -- HTTP Server management: 
 -- TODO: only run this section when an index.html file is in project
+-- TODO: return focus to neovim
+-- TODO: auto update on buffer write (should only be a autocommand when http_server is running)
 
-local http_server = 0
-vim.g.http_server = http_server
+vim.g.http_server = 0
 
 vim.api.nvim_create_user_command('HttpStart', function()
   local http_server = vim.g.http_server
