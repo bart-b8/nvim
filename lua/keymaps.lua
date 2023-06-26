@@ -4,6 +4,8 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
+local wk = require("which-key")
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -39,6 +41,14 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+wk.register({
+  b = {
+    name = "+buffers&view",
+    f = {":Telescope buffers<CR>", "find_buffers"},
+    ["|"] = {":vsplit<CR>"},
+    ["-"] = {":split<CR>"},
+  }
+}, { prefix = "<leader>" })
 
 -- Better paste
 keymap("v", "p", 'P', opts)
@@ -56,32 +66,72 @@ keymap("v", ">", ">gv", opts)
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+wk.register({
+  e = {
+    ":NvimTreeToggle<CR>",
+    "nvimtrEetoggle",
+  }
+}, { prefix = "<leader>" })
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+wk.register({
+  f = {
+    name = "+Telescope",
+    f = {":Telescope find_files<CR>", "find files"},
+    t = {":Telescope live_grep<CR>", "live_grep"},
+    p = {":Telescope projects<CR>", "projects"},
+    b = {":Telescope buffers<CR>", "buffers"},
+    h = {":Telescope help_tags<CR>", "help_tags"},
+    k = {":Telescope keymaps<CR>", "keymaps"},
+  }
+}, { prefix = "<leader>" })
 
 -- Git
-keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+wk.register({
+  g = {
+    name = "+git",
+    g = {function() _LAZYGIT_TOGGLE() end, "lazygit"}
+  }
+}, { prefix = "<leader>" })
 
 -- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
+wk.register({
+  c = {
+    name = "+Comment",
+    c = {function() require('Comment.api').toggle.linewise.current() end, "toggle line" },
+  }
+}, { prefix = '<leader>' })
+wk.register({
+  c = {
+    name = "+Comment",
+    c = {"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle line"}
+  }
+}, {prefix = "<leader>", mode = "x"})
 
 -- DAP
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", opts)
+keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>", opts)
+wk.register({
+  d = {
+    name = "+dap",
+    b = {function() require("dap").toggle_breakpoint() end, "toggle BP" },
+    c = {function() require("dap").continue() end, "continue" },
+    i = {function() require("dap").step_into() end, "step_into" },
+    o = {function() require("dap").step_over() end, "step_over" },
+    O = {function() require("dap").step_out() end, "step_out" },
+    r = {function() require("dap").repl.toggle() end, "repl" },
+    l = {function() require("dap").run_last() end, "runlast" },
+    u = {function() require("dapui").toggle() end, "dapui_toggle" },
+    t = {function() require("dap").terminate() end, "terminate" },
+    }
+}, { prefix = "<leader>" })
 
 -- Lsp
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+wk.register({
+  l = {
+    name = "+lsp",
+    f = {function() vim.lsp.buf.format{ async = true } end, "format" },
+  }
+}, { prefix = "<leader>" })

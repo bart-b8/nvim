@@ -50,7 +50,13 @@ function M.config()
 
   -- set a keybind to reload the snippits after updating my own snippits when making updates in other vim instance
   -- (New snippets should be available in instance where changes where made.)
-  vim.keymap.set('n', '<leader>L', function() require('luasnip.loaders.from_lua').load({paths =  "~/.config/nvim/LuaSnip/" }) end, {silent = true})
+  require('which-key').register({
+    s = {
+      name = "+snippits",
+      e = {function() require("luasnip.loaders").edit_snippet_files() end, "edit snippets"},
+      U = {function() require('luasnip.loaders.from_lua').load({paths =  "~/.config/nvim/LuaSnip/" }) end, "Update snippets"},
+    }
+  }, { prefix = "<leader>" })
 
   -- Store selection
   -- When in visual mode: <Tab> to remove highlighted and stored in LS_SELECT_RAW
@@ -58,8 +64,6 @@ function M.config()
   require("luasnip").config.set_config({
     store_selection_keys = "<Tab>",
   })
-
-  vim.keymap.set('n', "<leader>s", function() require("luasnip.loaders").edit_snippet_files() end, {silent = true} )
 
   local check_backspace = function()
     local col = vim.fn.col "." - 1
