@@ -29,7 +29,9 @@ cd neovim
 git checkout release-0.9
 make CMAKE_BUILD_TYPE=Release
 sudo make install
+sudo mv build/bin/nvim /usr/bin/nvim
 ```
+
 
 ## Install the config
 
