@@ -117,7 +117,7 @@ function M.config()
       },
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<CR>"] = cmp.mapping.confirm { select = false },
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -152,11 +152,11 @@ function M.config()
       format = function(entry, vim_item)
         vim_item.kind = kind_icons[vim_item.kind]
         vim_item.menu = ({
-          nvim_lsp = "",
-          nvim_lua = "",
-          luasnip = "",
-          buffer = "",
-          path = "",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[lua]",
+          luasnip = "[Snip]",
+          buffer = "[Buf]",
+          path = "[Path]",
           emoji = "",
         })[entry.source.name]
         return vim_item
