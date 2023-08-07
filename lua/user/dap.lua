@@ -9,6 +9,7 @@ function M.config()
 
   local dap_ui_status_ok, dapui = pcall(require, "dapui")
   if not dap_ui_status_ok then
+    vim.notify("dap not configured. dapui failed to require in dap.lua.")
     return
   end
 
@@ -41,11 +42,12 @@ function M.config()
       type = "codelldb",
       request = "launch",
       program = function()
-        local path
-        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
-          path = input
-        end)
-        vim.cmd [[redraw]]
+        -- local path
+        -- vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+        --   path = input
+        -- end)
+        -- vim.cmd [[redraw]]
+        local path = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         return path
       end,
       cwd = "${workspaceFolder}",
@@ -54,14 +56,14 @@ function M.config()
   }
 end
 
-M = {
-  "ravenxrz/DAPInstall.nvim",
-  commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de",
-  lazy = true,
-  config = function()
-    require("dap_install").setup {}
-    require("dap_install").config("python", {})
-  end,
-}
+-- M = {
+--   "ravenxrz/DAPInstall.nvim",
+--   commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de",
+--   lazy = true,
+--   config = function()
+--     require("dap_install").setup {}
+--     require("dap_install").config("python", {})
+--   end,
+-- }
 
 return M
