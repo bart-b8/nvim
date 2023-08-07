@@ -4,7 +4,11 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
-local wk = require("which-key")
+-- local wk = require("which-key")
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+  vim.notify("which-key not loaded in keymaps.lua")
+end
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
