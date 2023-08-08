@@ -55,7 +55,7 @@ function M.config()
     },
   }
   require('dap.ext.vscode').json_decode = require'json5'.parse
-  require('dap.ext.vscode').load_launchjs(_, { cppdbg = {'c', 'cpp'} })
+  require('dap.ext.vscode').load_launchjs(nil, { cppdbg = {'c', 'cpp'} })
 end
 
 -- M = {
