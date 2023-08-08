@@ -2,6 +2,7 @@ local M = {
   "mfussenegger/nvim-dap",
   commit = "6b12294a57001d994022df8acbe2ef7327d30587",
   event = "VeryLazy",
+  dependencies = { "Joakker/lua-json5" }
 }
 
 function M.config()
@@ -42,7 +43,8 @@ function M.config()
       request = "launch",
       program = function()
         local path
-        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+        -- vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd()}, function(input)
           path = input
         end)
         vim.cmd [[redraw]]
@@ -52,6 +54,8 @@ function M.config()
       stopOnEntry = false,
     },
   }
+  require('dap.ext.vscode').json_decode = require'json5'.parse
+  require('dap.ext.vscode').load_launchjs(_, { cppdbg = {'c', 'cpp'} })
 end
 
 -- M = {
