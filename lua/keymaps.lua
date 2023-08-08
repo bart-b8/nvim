@@ -114,17 +114,17 @@ wk.register({
 
 -- DAP
 keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<F10>", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<F9>", "<cmd>lua require'dap'.step_over()<cr>", opts)
 keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>", opts)
 wk.register({
   d = {
     name = "+dap",
     b = {function() require("dap").toggle_breakpoint() end, "toggle BP" },
-    c = {function() require("dap").continue() end, "continue" },
-    i = {function() require("dap").step_into() end, "step_into" },
-    o = {function() require("dap").step_over() end, "step_over" },
-    O = {function() require("dap").step_out() end, "step_out" },
+    c = {function() require("dap").continue() end, "continue F5" },
+    i = {function() require("dap").step_into() end, "step_into F10" },
+    o = {function() require("dap").step_over() end, "step_over F9" },
+    O = {function() require("dap").step_out() end, "step_out F12" },
     r = {function() require("dap").repl.toggle() end, "repl" },
     l = {function() require("dap").run_last() end, "runlast" },
     u = {function() require("dapui").toggle() end, "dapui_toggle" },
