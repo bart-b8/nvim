@@ -36,6 +36,11 @@ function M.config()
       -- detached = false,
     },
   }
+  dap.adapters.cppdbg = {
+    id = 'cppdbg',
+    type = "executable",
+    command = '/home/badcoute/src/vscode-cpptools-1.17/extension/debugAdapters/bin/OpenDebugAD7',
+  }
   dap.configurations.c = {
     {
       name = "Launch file",
