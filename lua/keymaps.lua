@@ -108,7 +108,8 @@ wk.register({
 wk.register({
   c = {
     name = "+Comment",
-    c = {"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle line"}
+    c = {"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle line"},
+    b = {"<esc><cmd>lua require('Comment.api').toggle.blockwise(vim.fn.visualmode())<CR>", "toggle blok"},
   }
 }, {prefix = "<leader>", mode = "x"})
 
