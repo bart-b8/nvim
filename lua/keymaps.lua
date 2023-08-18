@@ -122,6 +122,7 @@ wk.register({
   d = {
     name = "+dap",
     b = {function() require("dap").toggle_breakpoint() end, "toggle BP" },
+    B = {function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "BP condition" },
     c = {function() require("dap").continue() end, "continue F5" },
     i = {function() require("dap").step_into() end, "step_into F10" },
     o = {function() require("dap").step_over() end, "step_over F9" },
