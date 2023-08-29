@@ -2,6 +2,7 @@
 -- TODO: only run this section when an index.html file is in project
 -- TODO: return focus to neovim
 -- TODO: auto update on buffer write (should only be a autocommand when http_server is running)
+-- TODO: replace the name localhost into a hardcoded adress 127.0.0.1.
 
 vim.g.http_server = 0
 
