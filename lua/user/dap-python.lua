@@ -1,5 +1,6 @@
 local M = {
   'mfussenegger/nvim-dap-python',
+  ft = "python",
 }
 
 function M.config()
