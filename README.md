@@ -35,6 +35,11 @@ sudo mv build/bin/nvim /usr/bin/nvim
 
 ## Install the config
 
+If the user wants tasks.json and launch.json to work with json5. Cargo will need to be installed before installing package lua-json5.
+    ```sh
+    sudo apt install cargo
+    ```
+
 Make sure to remove or backup your current `nvim` directory
 
 ```sh
@@ -91,6 +96,17 @@ We will also need `ripgrep` for Telescope to work:
   ```sh
   sudo apt install ripgrep
   ```
+
+- vs-code style launch.json and task.json support with json5
+
+Will need cargo to work: 
+
+    ```sh
+    sudo apt install cargo
+    ```
+
+Then clean and rebuild lua-json5 package in Lazy.
+
 
 ---
 
