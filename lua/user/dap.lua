@@ -2,7 +2,12 @@ local M = {
   "mfussenegger/nvim-dap",
   commit = "6b12294a57001d994022df8acbe2ef7327d30587",
   event = "VeryLazy",
-  dependencies = { "Joakker/lua-json5" }
+  dependencies = {
+    {
+      'Joakker/lua-json5',
+      build = './install.sh'
+    }
+  }
 }
 
 function M.config()
