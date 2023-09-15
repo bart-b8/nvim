@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command('HttpStart', function()
   local http_server = vim.g.http_server
 
   if http_server <= 0 then
-    http_server = vim.fn.jobstart('python3 -m http.server --bind 127.0.0.1', {stderr_buffered = true})
+    http_server = vim.fn.jobstart('python3 -m http.server 4500 --bind 127.0.0.1', {stderr_buffered = true})
     vim.g.http_server = http_server
   end
 
@@ -21,7 +21,7 @@ vim.api.nvim_create_user_command('HttpStart', function()
     uv.close(handle)
   end
 
-  handle = uv.spawn('cmd.exe', { args = {'/C', 'start', 'http://localhost:8000'}}, on_exit) -- works in wsl or windows (last one is to be tested)
+  handle = uv.spawn('cmd.exe', { args = {'/C', 'start', 'http://localhost:4500'}}, on_exit) -- works in wsl or windows (last one is to be tested)
 end, {})
 
 vim.api.nvim_create_user_command('HttpStop', function()
